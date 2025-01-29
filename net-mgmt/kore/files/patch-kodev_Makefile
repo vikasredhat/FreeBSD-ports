@@ -1,0 +1,19 @@
+--- kodev/Makefile.orig	2020-09-08 19:35:30 UTC
++++ kodev/Makefile
+@@ -12,14 +12,8 @@ S_SRC=	../src/cli.c
+ CFLAGS+=-Wall -Werror -Wstrict-prototypes -Wmissing-prototypes
+ CFLAGS+=-Wmissing-declarations -Wshadow -Wpointer-arith -Wcast-qual
+ CFLAGS+=-Wsign-compare -Iincludes -std=c99 -pedantic
+-CFLAGS+=-DPREFIX='"$(PREFIX)"'
+-LDFLAGS=-lcrypto
+-
+-ifneq ("$(NOOPT)", "")
+-	CFLAGS+=-O0
+-else
+-	CFLAGS+=-O2
+-endif
++CFLAGS+=-DPREFIX='"$(PREFIX)"' -I$(OPENSSL_PATH)/include
++LDFLAGS+=-L$(OPENSSL_PATH)/lib -lcrypto
+ 
+ ifneq ("$(MINIMAL)", "")
+ 	CFLAGS+=-DKODEV_MINIMAL

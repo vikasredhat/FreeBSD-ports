@@ -1,0 +1,8 @@
+/etc/inc/priv/darkstat.priv.inc
+pkg/darkstat.inc
+pkg/darkstat.xml
+%%DATADIR%%/info.xml
+www/darkstat_redirect.php
+www/shortcuts/pkg_darkstat.inc
+@dir /etc/inc/priv
+@dir /etc/inc

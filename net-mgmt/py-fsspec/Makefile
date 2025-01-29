@@ -1,0 +1,24 @@
+PORTNAME=	fsspec
+PORTVERSION=	2023.9.2
+CATEGORIES=	devel python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	sunpoet@FreeBSD.org
+COMMENT=	File-system specification
+WWW=		https://github.com/fsspec/filesystem_spec
+
+LICENSE=	BSD3CLAUSE
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
+
+NO_ARCH=	yes
+
+OPTIONS_DEFINE=	GITHUB
+GITHUB_DESC=	GitHub file system
+
+GITHUB_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR}
+
+.include <bsd.port.mk>

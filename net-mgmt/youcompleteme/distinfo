@@ -1,0 +1,5 @@
+TIMESTAMP = 1692552198
+SHA256 (ycm-core-YouCompleteMe-g20230819-e949df3_GH0.tar.gz) = 3b8d0e529f77124c12fc44b682f032cccc4049c9e9cd01165483421274bc46dd
+SIZE (ycm-core-YouCompleteMe-g20230819-e949df3_GH0.tar.gz) = 326872
+SHA256 (ycm-core-ycmd-45bc1c5_GH0.tar.gz) = 23370c28c4adcc7ed630bcc643d26a1a449e23e140f534d8bf5ec845b92da6c0
+SIZE (ycm-core-ycmd-45bc1c5_GH0.tar.gz) = 3045862

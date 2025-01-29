@@ -1,0 +1,19 @@
+--- src/cpp/core/CMakeLists.txt.orig	2022-12-03 07:38:59 UTC
++++ src/cpp/core/CMakeLists.txt
+@@ -161,12 +161,14 @@ if (UNIX)
+    # platform introspection
+    check_symbol_exists(SA_NOCLDWAIT "signal.h" HAVE_SA_NOCLDWAIT)
+    check_symbol_exists(SO_PEERCRED "sys/socket.h" HAVE_SO_PEERCRED)
++   set(CMAKE_REQUIRED_LIBRARIES ${FREEBSD_LIBDIR}/libinotify.so)
+    check_function_exists(inotify_init1 HAVE_INOTIFY_INIT1)
++   set(CMAKE_REQUIRED_LIBRARIES "")
+    check_function_exists(getpeereid HAVE_GETPEEREID)
+    check_function_exists(setresuid HAVE_SETRESUID)
+-   if(EXISTS "/proc/self")
++   #if(EXISTS "/proc/self")
+       set(HAVE_PROCSELF TRUE)
+-   endif()
++   #endif()
+ 
+    # missing on non-glibc platforms like macOS, musl-based Linux distros, and
+    # the BSDs

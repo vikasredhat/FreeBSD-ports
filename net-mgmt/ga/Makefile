@@ -1,0 +1,46 @@
+PORTNAME=	ga
+DISTVERSION=	5.8.2
+CATEGORIES=	devel
+MASTER_SITES=	https://github.com/GlobalArrays/ga/releases/download/v${DISTVERSION}/
+
+MAINTAINER=	yuri@FreeBSD.org
+COMMENT=	Partitioned Global Address Space (PGAS) library for distributed arrays
+WWW=		https://hpc.pnl.gov//globalarrays/
+
+LICENSE=	BSD3CLAUSE
+
+LIB_DEPENDS=	libblas.so:math/blas \
+		liblapack.so:math/lapack \
+		libscalapack.so:math/scalapack
+
+USES=		autoreconf fortran gmake libtool localbase
+USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-peigs --enable-shared --disable-static --with-blas4 --with-scalapack
+
+LDFLAGS+=	-lscalapack
+
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check # test asserts, see https://github.com/GlobalArrays/ga/issues/312
+
+MPIEXEC_ARGS=	-np 2
+
+OPTIONS_RADIO=		MPI
+OPTIONS_RADIO_MPI=	MPICH OPENMPI
+OPTIONS_DEFAULT=	MPICH # the default should be the same as for the MPI option in math/scalapack
+
+MPICH_LIB_DEPENDS=	libmpich.so:net/mpich
+MPICH_VARS=		TEST_ARGS+=MPIEXEC="${LOCALBASE}/bin/mpiexec ${MPIEXEC_ARGS}"
+
+OPENMPI_BUILD_DEPENDS=		openmpi>0:net/openmpi
+OPENMPI_RUN_DEPENDS=		openmpi>0:net/openmpi
+OPENMPI_CONFIGURE_ENV=		CC=${LOCALBASE}/mpi/openmpi/bin/mpicc MPICC=${LOCALBASE}/mpi/openmpi/bin/mpicc \
+				CXX=${LOCALBASE}/mpi/openmpi/bin/mpic++ MPICXX=${LOCALBASE}/mpi/openmpi/bin/mpic++ \
+				F77=${LOCALBASE}/mpi/openmpi/bin/mpif77 MPIF77=${LOCALBASE}/mpi/openmpi/bin/mpif77 \
+				FC=${LOCALBASE}/mpi/openmpi/bin/mpif90 MPIFC=${LOCALBASE}/mpi/openmpi/bin/mpif90 \
+				LDFLAGS="-L${LOCALBASE}/mpi/openmpi/lib -Wl,-rpath,${LOCALBASE}/mpi/openmpi/lib"
+OPENMPI_MAKE_ARGS=		FREEBSD_LINK_FLAGS="-L${LOCALBASE}/mpi/openmpi/lib -Wl,-rpath,${LOCALBASE}/mpi/openmpi/lib -lmpi"
+OPENMPI_VARS=			TEST_ARGS+=MPIEXEC="${LOCALBASE}/mpi/openmpi/bin/mpiexec ${MPIEXEC_ARGS}"
+
+.include <bsd.port.mk>

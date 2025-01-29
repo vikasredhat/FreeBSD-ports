@@ -1,0 +1,9 @@
+--- CMakeLists.txt.orig	2023-06-22 09:07:56 UTC
++++ CMakeLists.txt
+@@ -1,5 +1,5 @@
+ cmake_minimum_required(VERSION 2.8.12)
+-project(Cppcheck)
++project(cppcheck)
+ 
+ include(cmake/cxx11.cmake)
+ use_cxx11()

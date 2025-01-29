@@ -1,0 +1,4 @@
+Python tools to analyze security characteristics of MS OLE2 files (also called
+Structured Storage, Compound File Binary Format or Compound Document File
+Format), such as Microsoft Office documents, for Malware Analysis and Incident
+Response.

@@ -1,0 +1,4 @@
+A library for interacting with Chef Software Inc's software distribution
+systems.
+
+See also: https://github.com/chef/mixlib-install

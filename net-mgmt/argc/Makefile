@@ -1,0 +1,155 @@
+PORTNAME=	argc
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.10.0
+CATEGORIES=	devel
+
+MAINTAINER=	yuri@FreeBSD.org
+COMMENT=	Easily parse command line arguments in bash
+WWW=		https://github.com/sigoden/argc
+
+LICENSE=	APACHE20 MIT
+LICENSE_COMB=	dual
+LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE-APACHE
+LICENSE_FILE_MIT=	${WRKSRC}/LICENSE-MIT
+
+USES=		cargo
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	sigoden
+
+CARGO_CRATES=	aho-corasick-1.0.5 \
+		anstyle-1.0.3 \
+		anyhow-1.0.75 \
+		assert_cmd-2.0.12 \
+		assert_fs-1.0.13 \
+		autocfg-1.1.0 \
+		base64-0.21.4 \
+		bitflags-1.3.2 \
+		bitflags-2.4.0 \
+		bstr-1.6.2 \
+		cc-1.0.83 \
+		cfg-if-1.0.0 \
+		console-0.15.7 \
+		convert_case-0.6.0 \
+		difflib-0.4.0 \
+		dirs-5.0.1 \
+		dirs-sys-0.4.1 \
+		doc-comment-0.3.3 \
+		either-1.9.0 \
+		encode_unicode-0.3.6 \
+		equivalent-1.0.1 \
+		errno-0.3.3 \
+		errno-dragonfly-0.1.2 \
+		fastrand-2.0.0 \
+		float-cmp-0.9.0 \
+		fnv-1.0.7 \
+		futures-0.3.28 \
+		futures-channel-0.3.28 \
+		futures-core-0.3.28 \
+		futures-executor-0.3.28 \
+		futures-io-0.3.28 \
+		futures-macro-0.3.28 \
+		futures-sink-0.3.28 \
+		futures-task-0.3.28 \
+		futures-timer-3.0.2 \
+		futures-util-0.3.28 \
+		getrandom-0.2.10 \
+		glob-0.3.1 \
+		globset-0.4.13 \
+		globwalk-0.8.1 \
+		hashbrown-0.14.0 \
+		hermit-abi-0.3.2 \
+		home-0.5.5 \
+		ignore-0.4.20 \
+		indexmap-2.0.0 \
+		insta-1.31.0 \
+		itertools-0.10.5 \
+		itoa-1.0.9 \
+		lazy_static-1.4.0 \
+		libc-0.2.148 \
+		linked-hash-map-0.5.6 \
+		linux-raw-sys-0.4.7 \
+		log-0.4.20 \
+		memchr-2.6.3 \
+		minimal-lexical-0.2.1 \
+		natord-1.0.9 \
+		nom-7.1.3 \
+		normalize-line-endings-0.3.0 \
+		num-traits-0.2.16 \
+		num_cpus-1.16.0 \
+		once_cell-1.18.0 \
+		option-ext-0.2.0 \
+		pin-project-lite-0.2.13 \
+		pin-utils-0.1.0 \
+		predicates-3.0.3 \
+		predicates-core-1.0.6 \
+		predicates-tree-1.0.9 \
+		proc-macro2-1.0.67 \
+		quote-1.0.33 \
+		redox_syscall-0.2.16 \
+		redox_syscall-0.3.5 \
+		redox_users-0.4.3 \
+		regex-1.9.5 \
+		regex-automata-0.3.8 \
+		regex-syntax-0.7.5 \
+		relative-path-1.9.0 \
+		rstest-0.18.2 \
+		rstest_macros-0.18.2 \
+		rustc_version-0.4.0 \
+		rustix-0.38.13 \
+		ryu-1.0.15 \
+		same-file-1.0.6 \
+		semver-1.0.18 \
+		serde-1.0.188 \
+		serde_derive-1.0.188 \
+		serde_json-1.0.107 \
+		shell-words-1.1.0 \
+		similar-2.2.1 \
+		slab-0.4.9 \
+		smawk-0.3.2 \
+		syn-2.0.37 \
+		tempfile-3.8.0 \
+		termtree-0.4.1 \
+		textwrap-0.16.0 \
+		thiserror-1.0.48 \
+		thiserror-impl-1.0.48 \
+		thread_local-1.1.7 \
+		threadpool-1.8.1 \
+		unicode-ident-1.0.12 \
+		unicode-linebreak-0.1.5 \
+		unicode-segmentation-1.10.1 \
+		unicode-width-0.1.10 \
+		wait-timeout-0.2.0 \
+		walkdir-2.4.0 \
+		wasi-0.11.0+wasi-snapshot-preview1 \
+		which-4.4.2 \
+		winapi-0.3.9 \
+		winapi-i686-pc-windows-gnu-0.4.0 \
+		winapi-util-0.1.5 \
+		winapi-x86_64-pc-windows-gnu-0.4.0 \
+		windows-sys-0.45.0 \
+		windows-sys-0.48.0 \
+		windows-targets-0.42.2 \
+		windows-targets-0.48.5 \
+		windows_aarch64_gnullvm-0.42.2 \
+		windows_aarch64_gnullvm-0.48.5 \
+		windows_aarch64_msvc-0.42.2 \
+		windows_aarch64_msvc-0.48.5 \
+		windows_i686_gnu-0.42.2 \
+		windows_i686_gnu-0.48.5 \
+		windows_i686_msvc-0.42.2 \
+		windows_i686_msvc-0.48.5 \
+		windows_x86_64_gnu-0.42.2 \
+		windows_x86_64_gnu-0.48.5 \
+		windows_x86_64_gnullvm-0.42.2 \
+		windows_x86_64_gnullvm-0.48.5 \
+		windows_x86_64_msvc-0.42.2 \
+		windows_x86_64_msvc-0.48.5 \
+		yaml-rust-0.4.5
+
+PLIST_FILES=	bin/${PORTNAME}
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+
+.include <bsd.port.mk>

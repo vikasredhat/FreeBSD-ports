@@ -1,0 +1,2 @@
+termbox is a minimal, legacy-free alternative to ncurses, suitable
+for building text-based user interfaces.

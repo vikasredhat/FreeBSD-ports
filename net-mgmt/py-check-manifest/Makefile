@@ -1,0 +1,29 @@
+PORTNAME=	check-manifest
+PORTVERSION=	0.49
+CATEGORIES=	devel python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	sunpoet@FreeBSD.org
+COMMENT=	Tool to check the completeness of MANIFEST.in for Python packages
+WWW=		https://github.com/mgedmin/check-manifest
+
+LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE.rst
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}build>=0.1:devel/py-build@${PY_FLAVOR}
+TEST_DEPENDS=	git-tiny>=0:devel/git@tiny \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils pytest
+
+NO_ARCH=	yes
+
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 31100
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tomli>=1.1.0:textproc/py-tomli@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>

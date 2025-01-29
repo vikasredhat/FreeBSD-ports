@@ -1,0 +1,5 @@
+TIMESTAMP = 1676890437
+SHA256 (apache-zookeeper-3.8.1-bin.tar.gz) = f78dd1e1ddffc5692f0dd0055aa3beab08dc57f328254a414b0301fbd36e07f5
+SIZE (apache-zookeeper-3.8.1-bin.tar.gz) = 13368512
+SHA256 (apache-log4j-2.19.0-bin.tar.gz) = cb9bb503ce0b2681c364ac4aaa44f3192ec465944da24f2fe1e5e33883297b8e
+SIZE (apache-log4j-2.19.0-bin.tar.gz) = 17712320

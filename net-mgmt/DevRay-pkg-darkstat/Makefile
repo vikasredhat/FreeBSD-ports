@@ -1,0 +1,48 @@
+# $FreeBSD$
+
+PORTNAME=	DevRay-pkg-darkstat
+PORTVERSION=	3.1.3
+PORTREVISION=	6
+CATEGORIES=	net-mgmt
+MASTER_SITES=	# empty
+DISTFILES=	# empty
+EXTRACT_ONLY=	# empty
+
+MAINTAINER=	coreteam@pfsense.org
+COMMENT=	DevRay package darkstat
+
+LICENSE=	APACHE20
+
+RUN_DEPENDS=	${LOCALBASE}/sbin/darkstat:net-mgmt/darkstat
+
+NO_BUILD=	yes
+NO_MTREE=	yes
+
+SUB_FILES=	pkg-install pkg-deinstall
+SUB_LIST=	PORTNAME=${PORTNAME}
+
+do-extract:
+	${MKDIR} ${WRKSRC}
+
+do-install:
+	${MKDIR} ${STAGEDIR}${PREFIX}/pkg
+	${MKDIR} ${STAGEDIR}${PREFIX}/www/shortcuts
+	${MKDIR} ${STAGEDIR}/etc/inc/priv
+	${MKDIR} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/darkstat.xml \
+		${STAGEDIR}${PREFIX}/pkg
+	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/darkstat.inc \
+		${STAGEDIR}${PREFIX}/pkg
+	${INSTALL_DATA} ${FILESDIR}${PREFIX}/www/darkstat_redirect.php \
+		${STAGEDIR}${PREFIX}/www
+	${INSTALL_DATA} ${FILESDIR}${PREFIX}/www/shortcuts/pkg_darkstat.inc \
+		${STAGEDIR}${PREFIX}/www/shortcuts
+	${INSTALL_DATA} ${FILESDIR}/etc/inc/priv/darkstat.priv.inc \
+		${STAGEDIR}/etc/inc/priv
+	${INSTALL_DATA} ${FILESDIR}${DATADIR}/info.xml \
+		${STAGEDIR}${DATADIR}
+	@${REINPLACE_CMD} -i '' -e "s|%%PKGVERSION%%|${PKGVERSION}|" \
+		${STAGEDIR}${PREFIX}/pkg/darkstat.xml \
+		${STAGEDIR}${DATADIR}/info.xml
+
+.include <bsd.port.mk>

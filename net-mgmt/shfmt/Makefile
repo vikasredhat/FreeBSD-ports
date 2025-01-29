@@ -1,0 +1,28 @@
+PORTNAME=	shfmt
+DISTVERSIONPREFIX=	v
+DISTVERSION=	3.7.0
+PORTREVISION=	2
+CATEGORIES=	devel
+
+MAINTAINER=	adamw@FreeBSD.org
+COMMENT=	Shell script formatter
+WWW=		https://github.com/mvdan/sh
+
+LICENSE=	BSD3CLAUSE
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	scdoc:textproc/scdoc
+
+USES=		go:modules
+GO_MODULE=	mvdan.cc/sh/v3
+GO_TARGET=	./cmd/shfmt
+GO_BUILDFLAGS=	-ldflags="-s -w -X main.version=${DISTVERSIONFULL}"
+
+PLIST_FILES=	bin/shfmt \
+		man/man1/shfmt.1.gz
+
+post-install:
+	scdoc < ${WRKSRC}/cmd/shfmt/shfmt.1.scd \
+		> ${STAGEDIR}${MAN1PREFIX}/man/man1/shfmt.1
+
+.include <bsd.port.mk>
